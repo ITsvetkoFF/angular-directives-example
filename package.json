@@ -1,0 +1,19 @@
+{
+  "name": "directives-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^3.0.0",
+    "wiredep": "^3.0.0",
+    "http-server": "^0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wiredep": "wiredep --verbose --bowerJson bower.json --src index.html",
+    "start": "http-server -a localhost -p 8000 -c-1"
+  },
+  "author": "",
+  "license": "ISC"
+}

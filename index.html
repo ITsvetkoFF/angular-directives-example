@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directive example</title>
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css" />
+    <!-- endbower -->
+
+    <link rel="stylesheet" href="src/style.css">
+
+</head>
+<body ng-app="itsvDirectiveExample">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                    <li><a href="http://tutorials.jenkov.com/angularjs/custom-directives.html">jenkov</a></li>
+                    <li><a href="https://docs.angularjs.org/api/ng/function/angular.element">element</a></li>
+                    <li><a href="http://www.toptal.com/angular-js/angular-js-demystifying-directives">functions</a></li>
+                    <li><a href="http://docs.emmet.io/cheat-sheet/">emmet</a></li>
+                    <li><a href="https://docs.angularjs.org/guide/directive">draggable</a></li>
+                    <li><a href="http://jsfiddle.net/mrajcok/StXFK/">require controller example</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" ng-controller="AppController as vmApp">
+    <h2>vmApp</h2>
+    <label>
+        <input type="checkbox" ng-model="vmApp.showRaw" ng-init="vmApp.showRaw==false"> Show what is inside the controller
+    </label>
+    <div ng-if="vmApp.showRaw">
+        <pre ng-bind="vmApp|json"></pre>
+        Name is <input type="text" ng-model="vmApp.firstName">
+        ihor is: <input type="text" ng-model="vmApp.namesObjectsArray[0].job">;
+    </div>
+
+    <!--<h2>&lt;my-outer&gt;&lt;/my-outer&gt; rendered</h2>-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<my-outer></my-outer>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--SCOPES-->
+    <h2> &lt;my-scopes names="..."&gt;&lt;/my-scopes&gt; rendered</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <my-scopes names="vmApp.namesObjectsArray" change-name="vmApp.firstName = newName" name="vmApp.firstName"></my-scopes>
+        </div>
+    </div>
+
+    <!--PRIORITIES-->
+    <!--<h2> &lt;my-outer my-inner name="first"&gt;&lt;/my-outer&gt; rendered</h2>-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<my-outer my-inner name="first"></my-outer>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--TRANSCLUSION-->
+    <!--<h2> &lt;my-transclude&gt;&lt;strong&gt;{{vmApp.firstName}}&lt;/strong&gt;&lt;/my-transclude&gt; rendered</h2>-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<my-transclude><strong>{{vmApp.firstName}}</strong></my-transclude>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <h2>Experiments</h2>
+    <ul>
+        <li>In SCOPES section check scope option:
+            <ul>
+                <li>false (default)</li>
+                <li>true</li>
+                <li>names: "=" -- two-way binding</li>
+                <li>names: "=?" -- anything optional (If the binding expression is non-assignable, or if the attribute isn't optional and doesn't exist, an exception ($compile:nonassign) will be thrown upon discovering changes to the local value, since it will be impossible to sync them back to the parent scope.)</li>
+                <li>names: "@" -- pass string</li>
+                <li>names: "<" -- NEW!</li>
+                <li>names: "&" -- execute fn in parent's context</li>
+            </ul>
+        </li>
+        <li>Add more priority to inner one</li>
+        <li>Check transclusion</li>
+    </ul>
+
+</div>
+
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/src/app.js"></script>
+<script src="/src/directives.js"></script>
+<!-- endinject -->
+
+</body>
+</html>/
